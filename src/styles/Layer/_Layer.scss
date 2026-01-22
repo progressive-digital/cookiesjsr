@@ -53,14 +53,27 @@
     background-color: #fff;
     margin: 0;
     background: var(--layer-header-bg-color, v.$color-1);
-    padding: 0 var(--default-margin, v.$default-margin);
+    padding: var(--default-margin, v.$default-margin);
     border-bottom: 1px solid var(--layer-border-color, v.$color-2);
-    height: 3.5em;
   }
 
   &__title {
+    display: flex;
     color: var(--layer-header-font-color, v.$color-5);
-    text-transform: uppercase;
+    &:before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background-color: v.$color-4;
+      background-image: url("../../src/assets/cookie-popup.svg");
+      background-size: 20px;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-right: .5rem;
+      border-radius: 4px;
+    }
   }
 
   &__close {
@@ -84,22 +97,20 @@
     flex: 1 1 auto;
     min-height: 0;
     position: relative;
+    padding: 1.5rem 2rem;
     background: var(--layer-body-bg-color, v.$color-1);
+    overflow-y: auto;
   }
 
   &__footer {
     flex: 0 0 auto;
     width: 100%;
-    padding: 0 var(--default-margin, v.$default-margin);
+    padding: var(--default-margin, v.$default-margin);
     display: flex;
     justify-content: flex-end;
     align-items: center;
     background: var(--layer-footer-bg-color, v.$color-1);
     border-top: 1px solid var(--layer-border-color, v.$color-2);
-
-    @media (min-width: v.$md) {
-      justify-content: space-between;
-    }
   }
 
   &__label-all {
@@ -115,17 +126,13 @@
   &__actions {
     display: flex;
     align-items: center;
-    margin: 0 -#{v.$default-margin-half};
-    width: calc(100% + #{v.$default-margin});
-    @media (min-width: v.$md) {
-      width: calc(70% + #{v.$default-margin-half});
-    }
+    gap: .5rem;
   }
 
   button {
     &.denyAll,
     &.allowAll {
-      white-space: wrap;
+      white-space: nowrap;
 
       @media (min-width: v.$sm) {
         display: inline-block;
