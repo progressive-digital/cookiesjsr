@@ -1,13 +1,14 @@
 @use "../../vars" as v;
 
 .cookiesjsr-service-group-default {
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
 }
 
 .cookiesjsr-service-group {
   display: flex;
-  gap: .75rem;
-  padding: 1rem;
+  justify-content: space-between;
+  gap: .75em;
+  padding: 1em;
 
   &:last-child {
     border-bottom: none;
@@ -24,16 +25,16 @@
     align-items: center;
     font-weight: 700;
     color: var(--layer-font-color, v.$color-5);
-    margin-bottom: .5rem;
+    margin-bottom: .5em;
   }
 
   &__title {
-    font-size: 1.125rem;
+    font-size: 1.125em;
     flex-grow: 1;
   }
 
   &__intro {
-    font-size: 1rem;
+    font-size: 1em;
     color: var(--layer-font-light, v.$color-6);
   }
 }

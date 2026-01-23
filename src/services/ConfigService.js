@@ -28,6 +28,7 @@ class ConfigService {
    *   => if EQUAL method returns requested config, if NOT EQUAL returns fallback.
    */
   get(name, fallback = null) {
+    console.log(this.config)
     if (name === '') {
       return this.config;
     }

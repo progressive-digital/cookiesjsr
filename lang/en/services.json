@@ -84,6 +84,7 @@
     "cookieDocs": "Cookie Documentation",
     "cookieDocsUri": "/cookie-documentation",
     "credit": "",
+    "applyToAll": "Apply to all",
 
     "default": {
       "title": "Required Cookies",

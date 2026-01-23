@@ -34,10 +34,6 @@
     }
   }
 
-  &__action {
-    padding: #{v.$default-margin-half} #{v.$default-margin};
-  }
-
   &__always-on {
     color: var(--switch-always-on-font-color, v.$color-3);
     text-align: right;
