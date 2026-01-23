@@ -1,15 +1,12 @@
 <script>
   import BaseLinks from "../ui/BaseLinks.svelte";
-  import GroupConsent from "./GroupConsent.svelte";
-  import SingleService from "./SingleService.svelte";
   import { t } from "../../services/TranslationService.js";
-  import { groupConsent } from "../../store.js";
   import {cookieDocs} from "../../store.js";
   import {getLink} from "../../services/helper.js";
 
   let gid = '';
   export let id = '';
-  export const services = [];
+  export let services = [];
 
   const cookieDocsLink = getLink(t('cookieDocsUri') + '#' + gid, t('cookieDocs'))
   $: links = ($cookieDocs && cookieDocsLink) ? [cookieDocsLink] : [];

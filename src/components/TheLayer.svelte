@@ -9,7 +9,6 @@
         bannerVisible,
         denyAllOnLayerClose,
         openSettingsHash,
-        layerOpen,
         services,
         showDenyAll,
         closeLayer,

@@ -15,17 +15,13 @@
   box-shadow: var(--banner-box-shadow, v.$box-shadow);
   height: 100vh;
   width: 100vw;
-  max-width: 100%;
+  max-width: 95%;
   z-index: 314160;
   overflow: hidden;
   line-height: 1.5em;
 
   @media (min-height: v.$h-sm) {
     height: 80vh;
-    max-height: 575px;
-  }
-  @media (min-height: v.$h-md) {
-    height: 60vh;
   }
 
   @media (min-width: v.$md) {
@@ -125,24 +121,24 @@
 
   &__actions {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: .5rem;
+    width: 100%;
+    @media (min-width: v.$sm) {
+      flex-wrap: nowrap;
+      width: auto;
+    }
   }
 
   button {
     &.denyAll,
-    &.allowAll {
+    &.save {
       white-space: nowrap;
+      width: 100%;
 
       @media (min-width: v.$sm) {
         display: inline-block;
-      }
-    }
-    &.save {
-      @media (max-width: v.$sm) {
-        padding: 0 2em;
-        width: auto;
-        margin-left: auto;
       }
     }
   }

@@ -8,8 +8,6 @@
     services,
     setAllServices,
   } from "../../store.js";
-  import StoreCookieService from "../../services/StoreCookieService.js";
-
 
   function applyToAll(checked) {
     let servicesState = {...$services};

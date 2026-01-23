@@ -12,6 +12,7 @@
   max-height: calc(100vh - 2em);
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap:1.5rem;
   box-shadow: var(--banner-box-shadow, v.$box-shadow);
@@ -22,6 +23,10 @@
   overflow: auto;
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
+
+  @media (min-width: v.$xxl) {
+    flex-wrap: nowrap;
+  }
 
   &--active {
     transform: translateY(0);
@@ -41,9 +46,13 @@
   }
 
   &__info {
-    width: 100%;
+    width: calc(100% - 48px - 1.5rem);
     max-height: calc(100vh - 100px - #{v.$default-margin-doubled});
     overflow: auto;
+
+    @media (min-width: v.$xxl) {
+      width: 100%;
+    }
   }
 
   &__links {
@@ -53,19 +62,34 @@
 
   &__action {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-end;
     padding-bottom: 1rem;
     align-items: flex-end;
     gap: .5rem;
+    width: 100%;
+
+
+    @media (min-width: v.$sm) {
+      flex-direction: row;
+    }
+    @media (min-width: v.$xxl) {
+      width: auto;
+      flex-direction: row;
+    }
+
     button {
       &.cookiesjsr-settings,
       &.denyAll,
       &.allowAll {
         display: inline-block;
         white-space: nowrap;
-        width: auto;
+        width: 100%;
+        @media (min-width: v.$md) {
+          width: auto;
+        }
+
       }
     }
   }
