@@ -90,6 +90,7 @@
     "cookieDocs": "Cookie Dokumentation",
     "cookieDocsUri": "/cookie-documentation",
     "credit": "",
+    "applyToAll": "Auf alle anwenden",
 
     "default": {
       "title": "Was sind Cookies?",

@@ -40,7 +40,7 @@
       <BaseButton btnType="cookiesjsr-settings" clicked={() => openLayer()}>{t('settings')}</BaseButton>
     {/if}
     {#if $showDenyAll}
-      <SetAllServices btnType="important denyAll" setAll={false}>{t('denyAll')}</SetAllServices>
+      <SetAllServices btnType="denyAll" setAll={false}>{t('denyAll')}</SetAllServices>
     {/if}
     <SetAllServices btnType="important allowAll" setAll={true}>{t('acceptAll')}</SetAllServices>
   </div>
