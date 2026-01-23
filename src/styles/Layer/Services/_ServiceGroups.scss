@@ -1,11 +1,29 @@
+@use "../../vars" as v;
 
 .cookiesjsr-service-groups {
-  position: static !important;
-  display: block;
-  max-height: 100%;
-  overflow: auto;
-
   list-style: none;
-  margin: 0 0 -1px !important;
+  margin: 0 !important;
   padding: 0 !important;
+  border: 1px solid var(--layer-border-color, v.$border-color);
+  border-radius: var(--layer-border-radius, v.$border-radius);
+
+  li {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--layer-border-color, v.$border-color);
+    }
+  }
+}
+
+.cookiesjsr-service-groups-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+  font-weight: 700;
+  line-height: 1.5;
+
+  &__label {
+    font-size: 1.1em;
+    color: var(--layer-font-color, v.$color-5);
+  }
 }

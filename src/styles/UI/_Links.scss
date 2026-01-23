@@ -2,7 +2,6 @@
 
 .cookiesjsr-links {
   list-style: none;
-  margin: 0 -0.75em;
   padding: 0;
   display: flex;
   flex-direction: row;
@@ -22,8 +21,12 @@
         padding: 0;
         line-height: 2em;
         display: inline-block;
+        text-decoration: underline;
       }
 
+      &:first-of-type {
+        padding-left: 0;
+      }
       &:last-child::before {
         content: none;
       }
@@ -37,6 +40,7 @@
         height: 0.3em;
         background-color: var(--link-list-separator-color, #fff);
         transform: translate(50%, -40%);
+        border-radius: 50%;
       }
     }
   }

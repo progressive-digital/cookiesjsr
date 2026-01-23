@@ -1,47 +1,61 @@
 <script>
+  import DefaultServiceGroup from "./DefaultServiceGroup.svelte";
   import ServiceGroup from "./ServiceGroup.svelte";
+  import TheSwitch from "../ui/TheSwitch.svelte";
   import { t } from "../../services/TranslationService.js";
   import {
     serviceGroups,
-    activeGroup,
-    setActiveGroup,
+    services,
+    setAllServices,
   } from "../../store.js";
-  import {onDestroy, onMount} from "svelte";
 
-  function tabsUpDown(event) {
-    let direction = 0;
-    switch (event.key) {
-      case 'ArrowUp':
-        direction = -1;
-        break;
-      case 'ArrowDown':
-        direction = 1;
-        break;
-      default:
+  function applyToAll(checked) {
+    let servicesState = {...$services};
+    // Iterate over all groups
+    for (let groupId in $serviceGroups) {
+        const group = $serviceGroups[groupId];
+        if (group && group.services) {
+            // Iterate over services in the group
+            group.services.forEach(service => {
+                // Check if the service needs consent
+                 if (service.needConsent && typeof servicesState[service.key] !== 'undefined') {
+                    servicesState[service.key] = checked;
+                }
+            });
+        }
     }
-    if (direction !== 0) {
-      let list = [];
-      for (let sgid in $serviceGroups) { list.push(sgid) }
-      const currentTab = list.indexOf($activeGroup);
-      let newTab = currentTab + direction;
-      newTab = (newTab > list.length - 1) ? 0 : newTab;
-      newTab = (newTab < 0) ? list.length - 1 : newTab;
-
-      setActiveGroup(list[newTab]);
-    }
+    // Update store and potentially local storage if needed (usually handled by store subscription or Save button)
+     setAllServices(servicesState);
   }
 
-  onMount(() => {
-    window.addEventListener("keydown", tabsUpDown);
-  });
+  // Separate functional group from others
+  $: functionalGroup = $serviceGroups['functional'];
+  $: otherGroups = Object.values($serviceGroups).filter(group => group.id !== 'functional');
 
-  onDestroy(() => {
-    window.removeEventListener("keydown", tabsUpDown);
-  });
+  // Determine if all consentable services are currently checked to set the initial state of "Apply to all"
+  // This is a simple visual check; if any single service is unchecked, the master toggle is unchecked.
+  $: allChecked = Object.values($services).every(val => val === true);
+
 </script>
 
-<ul class="cookiesjsr-service-groups" role="tablist" aria-label={t('cookieSettings')}>
-  {#each Object.values($serviceGroups) as group (group.id)}
-    <ServiceGroup {...group} />
+{#if functionalGroup}
+    <div class="cookiesjsr-service-group-wrapper">
+        <DefaultServiceGroup {...functionalGroup} />
+    </div>
+{/if}
+
+<div class="cookiesjsr-service-groups-all">
+    <div class="cookiesjsr-service-groups-all__label">{t('applyToAll')}</div>
+    <TheSwitch
+        title={allChecked ? t('allowed') : t('denied')}
+        activated={allChecked}
+        changed={applyToAll} />
+</div>
+
+<ul class="cookiesjsr-service-groups" aria-label={t('cookieSettings')}>
+  {#each otherGroups as group (group.id)}
+    <li>
+        <ServiceGroup {...group} />
+    </li>
   {/each}
 </ul>

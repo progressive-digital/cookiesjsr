@@ -9,7 +9,6 @@
         bannerVisible,
         denyAllOnLayerClose,
         openSettingsHash,
-        layerOpen,
         services,
         showDenyAll,
         closeLayer,
@@ -87,12 +86,10 @@
             <ServiceGroups/>
         </div>
         <footer class="cookiesjsr-layer__footer">
-            <div class="cookiesjsr-layer__label-all">{t('settingsAllServices')}</div>
             <div class="cookiesjsr-layer__actions">
                 {#if $showDenyAll}
                     <SetAllServices btnType="invert denyAll" setAll={false}>{t('denyAll')}</SetAllServices>
                 {/if}
-                <SetAllServices btnType="invert allowAll" setAll={true}>{t('acceptAll')}</SetAllServices>
                 <SaveButton>{t('saveSettings')}</SaveButton>
             </div>
         </footer>

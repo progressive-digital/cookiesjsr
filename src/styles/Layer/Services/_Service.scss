@@ -36,7 +36,6 @@
 
   &__action {
     padding: #{v.$default-margin-half} #{v.$default-margin};
-    width: calc(#{v.$default-margin-doubled} + #{v.$switch-width});
   }
 
   &__always-on {

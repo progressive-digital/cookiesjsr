@@ -3,25 +3,30 @@
 .cookiesjsr-banner {
   position: fixed;
   z-index: 100;
-  right: 1em;
-  bottom: 1em;
-  width: 420px;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  width: auto;
   height: auto;
   max-width: calc(100vw - 2em);
   max-height: calc(100vh - 2em);
 
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap:1.5rem;
   box-shadow: var(--banner-box-shadow, v.$box-shadow);
 
-  padding: 1em;
+  padding: 1.5rem 2rem;
   background-color: var(--banner-bg-color, v.$color-4);
   color: var(--banner-font-color, v.$color-1);
   overflow: auto;
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
+
+  @media (min-width: v.$xxl) {
+    flex-wrap: nowrap;
+  }
 
   &--active {
     transform: translateY(0);
@@ -31,38 +36,63 @@
     color: var(--link-list-font-color, v.$color-1);
   }
 
-  &__info,
-  &__action {
-    width: 100%;
+  &__image {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background-image: url(../../src/assets/cookie-banner.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
   }
 
   &__info {
-    margin-bottom: var(--default-margin, v.$default-margin);
+    width: calc(100% - 48px - 1.5rem);
     max-height: calc(100vh - 100px - #{v.$default-margin-doubled});
     overflow: auto;
+
+    @media (min-width: v.$xxl) {
+      width: 100%;
+    }
   }
 
   &__links {
-    margin-top: 0.5em;
-    font-size: 0.85em;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
   }
 
   &__action {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-  }
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+    align-items: flex-end;
+    gap: .5rem;
+    width: 100%;
 
-  button {
-    &.cookiesjsr-settings,
-    &.denyAll,
-    &.allowAll {
-      display: inline-block;
-      white-space: wrap;
+
+    @media (min-width: v.$sm) {
+      flex-direction: row;
+    }
+    @media (min-width: v.$xxl) {
       width: auto;
-      padding: 0 0.5em;
+      flex-direction: row;
+    }
+
+    button {
+      &.cookiesjsr-settings,
+      &.denyAll,
+      &.allowAll {
+        display: inline-block;
+        white-space: nowrap;
+        width: 100%;
+        @media (min-width: v.$md) {
+          width: auto;
+        }
+
+      }
     }
   }
+
+
 }

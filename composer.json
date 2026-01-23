@@ -1,5 +1,5 @@
 {
-    "name": "jfeltkamp/cookiesjsr",
+    "name": "progressive-digital/cookiesjsr",
     "type": "drupal-library",
     "description": "COOKiES JSR is a consent management tool and provides UI and API to manage 3rd party services within the GDPR.",
     "license": "GPL-3.0-or-later",
