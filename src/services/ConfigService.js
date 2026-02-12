@@ -28,7 +28,6 @@ class ConfigService {
    *   => if EQUAL method returns requested config, if NOT EQUAL returns fallback.
    */
   get(name, fallback = null) {
-    console.log(this.config)
     if (name === '') {
       return this.config;
     }
@@ -61,7 +60,6 @@ class ConfigService {
    *   Resolved content of string query.
    */
   resolve(path, separator='.') {
-    // console.log('#ConfigService::resolve', path)
     let properties = path.split(separator);
     return properties.reduce((prev, curr) => prev && prev[curr], this.config)
   }

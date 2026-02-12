@@ -21,7 +21,6 @@ class TranslationService {
       case 'object':
         return this.translation[q];
       default:
-        // console.log('#TRANS:query', q);
         let frag = this.resolve(q);
         return (typeof frag !== 'undefined') ? frag : this.readable(q);
     }
