@@ -11,6 +11,7 @@ export default defineConfig({
   })],
   build: {
     target: 'esnext',
+    minify: 'terser',
     assetsInlineLimit: 0,
     sourcemap: false,
     rollupOptions: {
@@ -20,6 +21,12 @@ export default defineConfig({
         entryFileNames: '[name].js',   // currently does not work for the legacy bundle
         assetFileNames: '[name].[ext]', // currently does not work for images
       },
+    },
+    terserOptions: {
+      mangle: {
+        reserved: ['L']
+      }
     }
   }
 })
+
