@@ -30,7 +30,10 @@ for (let src in combine) {
   buildify()
     .concat(combine[src])
     .perform(function(content) {
-      return content.replace(/\/\/# sourceMappingURL=([0-9a-z\-]*\.){1,9}map/g, '')
+      content = content.replace(/\/\/# sourceMappingURL=([0-9a-z\-]*\.){1,9}map/g, '');
+      // The bundle is loaded as a classic script. Keep its top-level names
+      // (e.g. "L") out of the global scope, where they clash with Leaflet.
+      return src === 'js' ? '(() => {\n' + content + '\n})();\n' : content;
     })
     .wrap('./libsrc/license-wrap.tpl', {
       ...tokens,
